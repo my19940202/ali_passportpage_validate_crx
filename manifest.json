@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "刮刮卡校验插件",
+  "description": "刮刮卡校验插件",
+  "version": "1.0",
+
+  "permissions": [
+    "tabs","http://*/*","https://*/*"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+       "matches": ["http://*/*","https://*/*"],
+       "js": ["test.drag.js"],
+       "run_at": "document_end"
+  }] 
+}
