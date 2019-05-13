@@ -1,3 +1,7 @@
+/**
+ * @file 模拟校验插件
+ * @author xishengbo
+ */
 
 let globalX = 0;
 let globalY = 0;
@@ -126,12 +130,49 @@ let fakeMove3 = [
     [-6, 3],
     [-9, 7]
 ];
-
-let fakeDragMove = [
-    fakeMove1,
-    fakeMove2,
-    fakeMove3
-];
+let fakeMove4 = [
+    [0, -1],
+    [-1, -1],
+    [0, -1],
+    [0, 0],
+    [0, -1],
+    [0, 0],
+    [0, -1],
+    [0, 0],
+    [0, -1],
+    [0, 0],
+    [-1, 0],
+    [0, -1],
+    [0, 0],
+    [-3, 0],
+    [-6, 0],
+    [-5, -1],
+    [-8, -1],
+    [-10, -1],
+    [-9, -1],
+    [-12, 0],
+    [-10, -1],
+    [-5, 0],
+    [-10, 0],
+    [-3, 0],
+    [-5, 0],
+    [-3, 0],
+    [-2, 0],
+    [-1, 0],
+    [0, 0],
+    [3, 0],
+    [3, -1],
+    [4, 0],
+    [4, -1],
+    [6, 0],
+    [4, 0],
+    [2, -1],
+    [4, 0],
+    [3, 0],
+    [2, 0],
+    [1, 0]
+]
+let fakeDragMove = [fakeMove1, fakeMove2, fakeMove3, fakeMove4];
 
 async function trigMouseEvt(el, eventType, x, y, mx, my) {
     return new Promise((resolve, reject) => {
@@ -186,15 +227,31 @@ let timeout = function (delay) {
         }, delay);
     });
 };
+const timeLimit = 30;
 
 // 页面onload 1s后进行模拟点击
 window.onload = async () => {
-    await timeout(1000);
-    run();
+    // 设置本地缓存，防止传播后大量使用
+    let couter = localStorage.getItem('localCounter');
+    if (couter) {
+        couter++;
+        if (couter < timeLimit) {
+            await timeout(1000);
+            run();
+            localStorage.setItem('localCounter', couter);
+        }
+        else {
+            alert('达到使用次数, 请联系管理员');
+        }
+    }
+    else {
+        localStorage.setItem('localCounter', 1);
+    }
 };
 
 async function moreClick(canvas) {
-    let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
+    let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
     let timegap = (Math.random() * 10 % 10).toFixed();
     for (const item of arr) {
         let offsetX = 10;
@@ -229,7 +286,7 @@ async function fakeDrag(canvas, pos) {
     globalY = pos.top + (+(Math.random() * 80).toFixed());
     await trigMouseEvt(canvas, 'mousemove');
     await trigMouseEvt(canvas, 'mousedown');
-    let moveArr = fakeDragMove[(Math.random() * 10 % 2).toFixed()];
+    let moveArr = fakeDragMove[(Math.random() * 10 % 3).toFixed()];
     for (const move of moveArr) {
         // fake人类模拟滑动
         let timegap = (Math.random() * 10 % 10).toFixed();
