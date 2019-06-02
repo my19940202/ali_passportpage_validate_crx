@@ -93,7 +93,6 @@ async function run() {
     // 方案1 简单点击 加上 一两次drag
     let canvas = document.getElementById('nc_1_canvas');
     let id = document.getElementById('J-accName');
-    let name = document.getElementById('J-accFullName');
     if (canvas) {
         let rect = canvas.getBoundingClientRect();
         globalX = rect.left;
@@ -101,9 +100,7 @@ async function run() {
         let arr = [1, 2, 3, 4, 5, 6, 7, 8];
         // 模拟输入
         let usrid = getQueryNameValue(window.location.search, 'mcid');
-        let usrname = decodeURIComponent(getQueryNameValue(window.location.search, 'mcname'));
         id.value = usrid;
-        name.value = usrname;
         // 模拟点击
         for (const step of arr) {
             await moreClick(canvas);
