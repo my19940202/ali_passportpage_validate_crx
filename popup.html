@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style type="text/css">
-	* {
-		padding: 0;
-		margin: 0;
-	}
-	.title {
-		font-size: 16px;
-	}
-	</style>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    .title {
+        font-size: 16px;
+    }
+    textarea {
+        width: 500px;
+        height: 300px;
+    }
+    button {
+        background-color: #3998fc;
+        color: #fff;
+        border-radius: 2px;
+        cursor: pointer;
+        background-image: none;
+        white-space: nowrap;
+        font-size: 14px;
+        padding: 5px 15px;
+    }
+    </style>
+    <script src="popup.js"></script>
 </head>
 <body>
-	<div style="width:400px;height:200px;padding: 5px;">
-		<h2>刮刮卡校验破解插件</h2>
-		<br>
-		<article>
-			<h4>功能</h4>
-			<ul>
-				<li>1. 自动触发淘宝找回会员名页面的检验</li>
-				<li>2. 校验可能有失败，重新刷新页面重试</li>
-			</ul>
-		</article>
-	</div>
+    <div style="width:400px;height:200px;padding: 5px;">
+        <h2>刮刮卡校验破解插件</h2>
+        <br>
+        <article>
+            <h4>功能</h4>
+            <ul>
+                <li>1. 自动触发淘宝找回会员名页面的检验</li>
+                <li>2. 校验可能有失败，重新刷新页面重试</li>
+            </ul>
+        </article>
+        <p>按照以下格式，输入身份证和姓名（换行分隔）: 3310231231231231231 赵四</p>
+        <textarea id="content" placeholder="3310231231231231231 赵四"></textarea>
+        <br/>
+        <button id="popup_submit">提交数据</button>
+    </div>
 </body>
 </html>

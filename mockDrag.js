@@ -5,174 +5,6 @@
 
 let globalX = 0;
 let globalY = 0;
-let fakeMove1 = [
-    [-1, 0],
-    [-2, 1],
-    [-2, 0],
-    [-1, 0],
-    [-2, 1],
-    [-1, 0],
-    [0, 0],
-    [-1, 0],
-    [0, 0],
-    [-1, 0],
-    [0, 0],
-    [-1, 0],
-    [0, 0],
-    [-1, 0],
-    [-4, 0],
-    [-5, 0],
-    [-6, 0],
-    [-26, 3],
-    [-13, 2],
-    [-14, 2],
-    [-15, 1],
-    [-13, 3],
-    [-14, 1],
-    [-15, 2],
-    [-5, 1],
-    [-11, 1]
-];
-let fakeMove2 = [
-    [0, -2],
-    [-1, -1],
-    [0, -1],
-    [-1, -1],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [-1, 0],
-    [0, 0],
-    [-3, 0],
-    [-1, 0],
-    [-2, 0],
-    [-1, 0],
-    [-2, 0],
-    [-1, 0],
-    [-2, 0],
-    [-1, 0],
-    [-2, 0],
-    [-1, -1],
-    [-2, -1],
-    [-2, 0],
-    [-1, -1],
-    [-1, 0],
-    [-2, -1],
-    [0, 0],
-    [-1, 0],
-    [-1, -1],
-    [0, 0],
-    [-1, -1],
-    [0, 0],
-    [-1, 0],
-    [0, -1],
-    [0, 0],
-    [-1, 0],
-    [0, 0],
-    [0, 1],
-    [0, 0],
-    [0, 1],
-    [1, 0],
-    [0, 1],
-    [0, 0],
-    [1, 1],
-    [0, 0],
-    [0, 1],
-    [0, 0]
-];
-let fakeMove3 = [
-    [-3, 0],
-    [-1, 0],
-    [-4, 2],
-    [-2, 0],
-    [-2, 1],
-    [-2, 0],
-    [-2, 1],
-    [-1, 0],
-    [-1, 1],
-    [-1, 0],
-    [0, 0],
-    [-1, 0],
-    [0, 0],
-    [-2, 0],
-    [-1, 0],
-    [-3, 0],
-    [0, 0],
-    [-2, 0],
-    [-1, 1],
-    [-1, 2],
-    [0, 1],
-    [0, 2],
-    [0, 1],
-    [1, 2],
-    [1, 0],
-    [1, 1],
-    [0, 1],
-    [1, 0],
-    [0, 0],
-    [0, 1],
-    [0, 0],
-    [-10, 0],
-    [-3, 0],
-    [-2, 0],
-    [-3, 0],
-    [-1, 1],
-    [-3, 1],
-    [-3, 0],
-    [-2, 2],
-    [-6, 3],
-    [-9, 7]
-];
-let fakeMove4 = [
-    [0, -1],
-    [-1, -1],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [0, -1],
-    [0, 0],
-    [-1, 0],
-    [0, -1],
-    [0, 0],
-    [-3, 0],
-    [-6, 0],
-    [-5, -1],
-    [-8, -1],
-    [-10, -1],
-    [-9, -1],
-    [-12, 0],
-    [-10, -1],
-    [-5, 0],
-    [-10, 0],
-    [-3, 0],
-    [-5, 0],
-    [-3, 0],
-    [-2, 0],
-    [-1, 0],
-    [0, 0],
-    [3, 0],
-    [3, -1],
-    [4, 0],
-    [4, -1],
-    [6, 0],
-    [4, 0],
-    [2, -1],
-    [4, 0],
-    [3, 0],
-    [2, 0],
-    [1, 0]
-]
-let fakeDragMove = [fakeMove1, fakeMove2, fakeMove3, fakeMove4];
 
 async function trigMouseEvt(el, eventType, x, y, mx, my) {
     return new Promise((resolve, reject) => {
@@ -227,26 +59,13 @@ let timeout = function (delay) {
         }, delay);
     });
 };
-const timeLimit = 30;
+const timeLimit = 30000000;
 
 // 页面onload 1s后进行模拟点击
 window.onload = async () => {
     // 设置本地缓存，防止传播后大量使用
-    let couter = localStorage.getItem('localCounter');
-    if (couter) {
-        couter++;
-        if (couter < timeLimit) {
-            await timeout(1000);
-            run();
-            localStorage.setItem('localCounter', couter);
-        }
-        else {
-            alert('达到使用次数, 请联系管理员');
-        }
-    }
-    else {
-        localStorage.setItem('localCounter', 1);
-    }
+    await timeout(500);
+    run();
 };
 
 async function moreClick(canvas) {
@@ -261,21 +80,39 @@ async function moreClick(canvas) {
     }
 }
 
-async function run() {
-    // 方案1 简单点击 加上 一两次drga
-    let canvas = document.getElementById('nc_1_canvas');
-    let rect = canvas.getBoundingClientRect();
-    globalX = rect.left;
-    globalY = rect.top + 10;
-    let arr = [1, 2, 3, 4, 5, 6, 7, 8];
-
-    for (const step of arr) {
-        await moreClick(canvas);
-        await timeout(10);
-        globalY += 10;
-        globalX = 0;
+function getQueryNameValue(query, key) {
+    let ret = '';
+    if (query.indexOf(key) !== -1) {
+        ret = query.split(`${key}=`)[1];
+        ret = ret.split('&')[0];
     }
-    await fakeDrag(canvas, rect);
+    return ret;
+}
+
+async function run() {
+    // 方案1 简单点击 加上 一两次drag
+    let canvas = document.getElementById('nc_1_canvas');
+    let id = document.getElementById('J-accName');
+    let name = document.getElementById('J-accFullName');
+    if (canvas) {
+        let rect = canvas.getBoundingClientRect();
+        globalX = rect.left;
+        globalY = rect.top + 10;
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+        // 模拟输入
+        let usrid = getQueryNameValue(window.location.search, 'mcid');
+        let usrname = decodeURIComponent(getQueryNameValue(window.location.search, 'mcname'));
+        id.value = usrid;
+        name.value = usrname;
+        // 模拟点击
+        for (const step of arr) {
+            await moreClick(canvas);
+            await timeout(10);
+            globalY += 10;
+            globalX = 0;
+        }
+        await fakeDrag(canvas, rect);
+    }
 }
 
 // 此处需要模拟人的真实滑动
