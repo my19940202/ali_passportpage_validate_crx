@@ -13,7 +13,7 @@
   },
   "content_scripts": [{
        "matches": ["http://*/*","https://*/*"],
-       "js": ["constant.js", "mockDrag.js"],
+       "js": ["constant.js", "mockDrag.js", "collectData.js"],
        "run_at": "document_end"
   }] 
 }

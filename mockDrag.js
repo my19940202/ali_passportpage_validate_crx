@@ -65,7 +65,11 @@ const timeLimit = 30000000;
 window.onload = async () => {
     // 设置本地缓存，防止传播后大量使用
     await timeout(500);
-    run();
+    console.log('run');
+    // 防止校验重复执行
+    if (document.body.innerText.indexOf('该账户不存在，请重新输入') === -1) {
+        run();
+    }
 };
 
 async function moreClick(canvas) {
@@ -93,6 +97,7 @@ async function run() {
     // 方案1 简单点击 加上 一两次drag
     let canvas = document.getElementById('nc_1_canvas');
     let id = document.getElementById('J-accName');
+    let submit = document.getElementById('submitBtn');
     if (canvas) {
         let rect = canvas.getBoundingClientRect();
         globalX = rect.left;
@@ -109,6 +114,9 @@ async function run() {
             globalX = 0;
         }
         await fakeDrag(canvas, rect);
+        // 模拟点击提交按钮
+        await timeout(50);
+        submit.click();
     }
 }
 

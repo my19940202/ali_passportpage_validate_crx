@@ -19,14 +19,14 @@ id name,id name,id name 然后一次性打开多个页面
 黑产客户那边有百万个帐号，目前是计划用插件的形式，手动输入所有帐号的类型
 - 输入（帐号id）
 ```
-johannes1025@qq.com
-lixue13627718256@qq.com
-zhefeng7676@qq.com
-yangfengyi88103@qq.com
-ly568177964@qq.com
-lovegufangliang@qq.com
-www.912498286@qq.com
-lfp0815@qq.com
+通过银行卡+手机: johannes1025@qq.com
+通过手机绑定: lixue13627718256@qq.com
+不存在: zhefeng7676@qq.com
+冻结: yangfengyi88103@qq.com
+密保: ly568177964@qq.com
+人工服务: lovegufangliang@qq.com
+支付宝风险: www.912498286@qq.com
+通过邮箱验证码+手机: lfp0815@qq.com
 ```
 - 输出形式（账户信息类型）
     - 通过银行卡+手机
@@ -42,7 +42,7 @@ lfp0815@qq.com
     - 人工服务
         window.frames["iframe1"].document.body.innerText.indexOf('通过 联系客服') && window.frames["iframe1"].document.body.innerText.indexOf('通过 手机验证码+证件') === -1
     - 支付宝风险
-        window.location.hostname === 'accounts.alipay.com'
+        document.body.innerText.indexOf('重置登录密码，请选择重置方式')
     - 通过邮箱验证码+手机
         document.body.innerText.indexOf('通过 邮箱验证码+输入手机')
 
@@ -58,3 +58,8 @@ lfp0815@qq.com
     5. 写入indexDB或者写入localstorage
         获取用户id: document.referrer
         写入localstorage
+
+
+
+> 参考资料:
+- https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html
