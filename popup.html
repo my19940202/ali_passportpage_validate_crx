@@ -26,11 +26,12 @@
         padding: 5px 15px;
     }
     </style>
+    <script src="lib/lodash.min.js"></script>
     <script src="popup.js"></script>
 </head>
 <body>
     <div style="width:400px;height:200px;padding: 5px;">
-        <h2>刮刮卡校验破解插件</h2>
+        <h2>用户名类型收集插件</h2>
         <br>
         <article>
             <h4>功能</h4>
@@ -42,9 +43,13 @@
         <p>按照以下格式，输入要找回的登录名（换行分隔）: 1502234134</p>
         <textarea id="content" placeholder="1502234134"></textarea>
         <br/>
-        <button id="popup_submit">提交数据</button>
+        <button id="popup_submit">点击提交数据</button>
         <br/>
-        <button id="popup_submit">下载已有数据</button>
+        <br/>
+        <button id="popup_clear">清空已抓取数据</button>
+        <br/>
+        <br/>
+        <button id="copy_data">点击复制已抓取数据</button>
     </div>
 </body>
 </html>

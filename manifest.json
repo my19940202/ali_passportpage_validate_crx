@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "刮刮卡校验插件",
-  "description": "刮刮卡校验插件",
+  "name": "username type collect extension",
+  "description": "username type collect extension",
   "version": "1.0",
 
   "permissions": [
@@ -12,7 +12,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-      "scripts": ["background.js"],
+      "scripts": ["lib/lodash.min.js", "background.js"],
       "persistent": false
   },
   "content_scripts": [{

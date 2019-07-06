@@ -65,7 +65,6 @@ const timeLimit = 30000000;
 window.onload = async () => {
     // 设置本地缓存，防止传播后大量使用
     await timeout(500);
-    console.log('run');
     // 防止校验重复执行
     if (document.body.innerText.indexOf('该账户不存在，请重新输入') === -1) {
         run();
@@ -114,9 +113,15 @@ async function run() {
             globalX = 0;
         }
         await fakeDrag(canvas, rect);
-        // 模拟点击提交按钮
-        await timeout(50);
-        submit.click();
+        // 模拟滑动成功，提交按钮
+        if (document.body.innerText.indexOf('恭喜您成功刮出小鸡，继续下一步操作吧') !== -1) {
+            await timeout(50);
+            submit.click();
+        }
+        else {
+            // 直接重新刷新处理吧
+            window.location.reload();
+        }
     }
 }
 

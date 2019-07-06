@@ -30,7 +30,15 @@ function collectData(usrname) {
                 ret.type = 2;
             }
         }
-        else if (location.pathname === '/ac/to_iv.htm') {
+        else if (location.hostname === 'accounts.alipay.com') {
+            if (text.indexOf('您的账户被冻结，暂时不能访问此页面') !== -1) {
+                ret.type = 3;
+            }
+            else if (text.indexOf('重置登录密码，请选择重置方式') !== -1) {
+                ret.type = 6;
+            }
+        }
+        else {
             // 是否有iframe1
             let frame = document.getElementsByTagName('iframe');
             if (frame[0] && frame[0].name === 'iframe1') {
@@ -50,17 +58,9 @@ function collectData(usrname) {
                 }
             }
             else {
-                if (text.indexOf('为保证账户正常使用，请更换手机后再重置密码')!== -1) {
+                if (text.indexOf('为保证账户正常使用，请更换手机后再重置密码') !== -1) {
                     ret.type = 4;
                 }
-            }
-        }
-        else if (location.hostname === 'accounts.alipay.com') {
-            if (text.indexOf('您的账户被冻结，暂时不能访问此页面') !== -1) {
-                ret.type = 3;
-            }
-            else if (text.indexOf('重置登录密码，请选择重置方式') !== -1) {
-                ret.type = 6;
             }
         }
         chrome.runtime.sendMessage(
