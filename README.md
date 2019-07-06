@@ -51,14 +51,15 @@ id name,id name,id name 然后一次性打开多个页面
         chrome popup输入id
     2. 批量化打开页面
         注意是否会因为大量打开被反屏蔽
+        这边有个问题
     3. 批量执行fake drag,页面跳转
         后续可以添加失败重试逻辑
     4. 校验结束，匹配到页面对应的关键词
         此处需要写个switch逻辑 每种case写匹配规则
     5. 写入indexDB或者写入localstorage
+        chrome.localstorage
         获取用户id: document.referrer
         写入localstorage
-
 
 
 > 参考资料:

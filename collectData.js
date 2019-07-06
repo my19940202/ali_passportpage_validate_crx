@@ -63,12 +63,12 @@ function collectData(usrname) {
                 ret.type = 6;
             }
         }
-        console.log(ret, '用户类型结果数据');
-        // 设置 localstorage
-        // if (ret.usrname && ret.hasOwnProperty('type')) {
-        //     let userData = localStorage.getItem('userData');
-
-        // }
+        chrome.runtime.sendMessage(
+            ret,
+            response => {
+                console.log('缓存成功' + response);
+            }
+        );
     }
 }
 
