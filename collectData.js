@@ -21,7 +21,7 @@ function getQueryNameValue(query, key) {
 // 6.支付宝风险
 // 7.通过邮箱验证码+手机
 function collectData(usrname) {
-    if (document.referrer) {
+    if (document.referrer && usrname) {
         let ret = {name: usrname};
         let text = document.body.innerText;
         // 判断用户类型
@@ -77,7 +77,6 @@ function collectData(usrname) {
     let usrname = getQueryNameValue(document.referrer, 'mcid');
     if (usrname) {
         setTimeout(() => {
-            console.log('collectData');
             collectData(usrname);
         }, 5000);
     }
